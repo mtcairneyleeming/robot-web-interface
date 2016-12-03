@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+    This is the starter template page. Use this page to start your new project from
+    scratch. This page gets rid of all links and provides the needed markup only.
+    -->
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <% title = "Control"; %>
+        <%- include ../partials/head %>
+</head>
+<!--
+        BODY TAG OPTIONS:
+        =================
+        Apply one or more of the following classes to get the
+        desired effect
+        |---------------------------------------------------------|
+        | SKINS         | skin-blue                               |
+        |               | skin-black                              |
+        |               | skin-purple                             |
+        |               | skin-yellow                             |
+        |               | skin-red                                |
+        |               | skin-green                              |
+        |---------------------------------------------------------|
+        |LAYOUT OPTIONS | fixed                                   |
+        |               | layout-boxed                            |
+        |               | layout-top-nav                          |
+        |               | sidebar-collapse                        |
+        |               | sidebar-mini                            |
+        |---------------------------------------------------------|
+        -->
+
+<body class="hold-transition skin-blue sidebar-mini" onload="init()">
+    <div id="joystick"></div>
+    <div class="wrapper">
+        <div>
+            <%- include ../partials/header %>
+        </div>
+        <div>
+            <% currPath = "status" %>
+                <%- include ../partials/lsidebar %>
+        </div>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Robot Status
+                    <small>Monitor the status of your robot. See settings to customize this view</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">
+                        Status
+                    </li>
+                </ol>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                <h3>
+                    Use the pink joystick below to control the robot.
+                    <small> Alternatively, use a ps3 controller plugged into the server (WIP, not currently available)</small>
+                </h3>
+                <!--gamepad viewer-->
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <i class="fa fa-arrows"></i>
+                                <h3 class="box-title">Controls</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <dl class="dl">
+                                    <dt>Joystick</dt>
+                                    <dd>Click/touch the joystick below to control the robot</dd>
+                                    <dt>Displayed map</dt>
+                                    <dd>The map to the left displays the robot's position in real time. Use the controls to control it, or set it to autonomous mode/</dd>
+                                    <dd></dd>
+                                    <dt>Autonomous mode (WIP)</dt>
+                                    <dd>Task the robot with carrying out basic tasks. Monitor its progress & status here. You will recieve alerts if anything goes wrong/</dd>
+                                </dl>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Autonomous mode <small>WIP - may not function as expected</small></h3>
+                                <div class="box-tools pull-right">
+                                    <input type="checkbox" name="my-checkbox">
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <p>Set the robot to autonomous mode. Use the play, pause and stop buttons to control its current action, and the on/off buttons to enable autonomous mode.</p>
+                                <a class="btn btn-app">
+                                    <i class="fa fa-play"></i> Start
+                                </a>
+                                <a class="btn btn-app">
+                                    <i class="fa fa-pause"></i> Pause
+                                </a>
+                                <a class="btn btn-app">
+                                    <i class="fa fa-stop"></i> Stop
+                                </a>
+                                <p>
+                                    Autonomous actions. Choose one, and then press start for the robot to carry it out.
+                                </p>
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <div <% include ../partials/footer %>
+            <% include ../partials/rsidebar %>
+        </div>
+        <!-- ./wrapper -->
+        <!--nipplejs-->
+        <script src="/javascripts/nipplejs/nipplejs.min.js"></script>
+        <!--create.js / easel.js-->
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+        <!--bootstrap switch-->
+        <!--<link href="/stylesheets/switch/bootstrap-switch.css" rel="stylesheet">-->
+        <!--ros3djs-->
+        <!--<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/current/three.min.js"></script>-->
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+        <script type="text/javascript" src="javascripts/ros2djs/ros2d.js"></script>
+        <% include ../partials/scripts %>
+            <!--<script src="/javascripts/switch/bootstrap-switch.min.js"></script>-->
+            <script type="text/javascript" src="/javascripts/pages/control.js"></script>
+</body>
+
+</html>

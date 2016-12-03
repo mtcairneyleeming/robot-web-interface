@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% title = "Status" %>
+        <% include ../partials/head %>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini" onload="init()">
+    <div class="wrapper">
+        <div>
+            <%- include ../partials/header %>
+        </div>
+        <div>
+            <% currPath = "status" %>
+                <%- include ../partials/lsidebar %>
+        </div>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Robot Status
+                    <small>Monitor the status of your robot. See settings to customize this view</small>
+                </h1>
+                <ol class="breadcrumb">
+
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">
+                        Status
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-microchip"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">CPU Usage</span>
+                                <span class="info-box-number">90<small>%</small></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-rss"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Network usage</span>
+                                <span class="info-box-number">100MB/s</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- fix for small devices only -->
+                    <div class="clearfix visible-sm-block"></div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-clock-o"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Uptime</span>
+                                <span class="info-box-number">760hrs</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="fa fa-code-fork"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Nodes online</span>
+                                <span class="info-box-number">13</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <h2>ROS Graph</h2>
+                <p><small>(WIP) More information, such as throughput/details on hover will be implemented soon</small></p>
+
+                <div class="row">
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        <div style="height: 300px" id="rosgraph"></div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Services</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Service</th>
+
+                                            <th>Node</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="services_table">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <div>
+            <%- include ../partials/footer %>
+                <%- include ../partials/rsidebar %>
+        </div>
+        <!-- ./wrapper -->
+        <!--for graph drawing-->
+        <script src="/javascripts/sigmajs/sigma.js"></script>
+
+        <% include ../partials/scripts %>
+            <script src="/javascripts/pages/status.js"></script>
+
+</body>
+
+</html>

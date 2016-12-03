@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> ROS | Voice Commands
+    </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/stylesheets/adminlte/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect.
+  -->
+    <link rel="stylesheet" href="/stylesheets/adminlte/skin-blue.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="hold-transition skin-blue layout-top-nav" style="overflow: hidden">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand"><b>ROS</b> Voice Commands</a>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span id="mic-box" class="info-box-icon bg-aqua"><i class="fa fa-microphone"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Voice Commands</span>
+                                <span id="listening" class="info-box-number">Not listening</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                        <small>Click or press <i>Space</i> to start/stop listening. Detects the end of commands and executes them automatically. </small>
+                    </div>
+                </div>
+            </section>
+
+        </div>g
+        <!-- ./wrapper -->
+        <div>
+            <% include ../partials/scripts %>
+        </div>
+        <script>
+            var micToggle;
+
+            $(document).ready(function() {
+                var socket = io()
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = "en-GB";
+                recognition.onresult = function(event) {
+                    //console.log(event.results[0][0].transcript)
+                    socket.emit('speech', event.results[0][0].transcript)
+                }
+
+                var recognizing = false
+                var toggleRecognition = function() {
+                    if (!recognizing) {
+                        recognition.start()
+                        $('#listening').text("Listening");
+
+                    } else {
+                        recognition.stop()
+                        $('#listening').text("Not listening");
+                    }
+                    recognizing = !recognizing
+                    $('#mic-box').toggleClass('bg-red')
+                    $('#mic-box').toggleClass('bg-aqua')
+                }
+                $('.info-box').click(toggleRecognition);
+                $(document).keydown(function(event) {
+                    if (event.keyCode == 32) {
+                        toggleRecognition()
+                    }
+                })
+            })
+        </script>
+
+</body>
+
+</html>
